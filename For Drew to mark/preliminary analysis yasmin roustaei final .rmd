@@ -1,0 +1,87 @@
+---
+title: "Word document Preliminary Analysis"
+author: "Yasmin Roustaei"
+date: "18 May 2021"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup,echo=FALSE}
+library(readxl)
+Lizard_data<-read_excel("~/Lizard data.xlsx")
+
+```
+
+```{r}
+getwd()
+```
+[1] We hypothesise that allelic richness of Eulamprus leuraensis populations will 
+increase with increasing elevation. We hypothesise that expected heterozygosity and observed heterozygosity of 
+Eulamprus leuraensis populations will increase with increasing elevation. 
+
+[2] Dependent variables-allelic richness, observe heterozygosity, and expected heterozygosity.
+Independent variables-elevation (500, 600, 700, 800, 900, 1000, 1100 metres). 
+
+[3] A linear regression will be used to assess the relationship between elevation and genetic 
+diversity (allelic richness, observed heterozygosity, and expected heterozygosity). The 
+statistical null hypothesis is that the linear relationship between Y (allelic richness, observed 
+heterozygosity, and expected heterozygosity) is equal to 0. The alternative hypothesis is that 
+the linear relationship between Y (allelic richness, observed heterozygosity, and expected 
+heterozygosity) is not equal to 0. 
+
+[4] Independence of data within and among samples, X variable is measured without error, 
+Normality of the residuals about the fitted line, m X + b, Homogeneity of variances for 
+residuals about the fitted line m X + b, and Linear relationship
+
+[5]Results
+The plot illustrates a linear relationship. This suggests that the assumption the relationship is 
+linear is reasonable. It also suggests that there are no unusual data points. It also illustrates 
+that the variation around the estimated regression line is constant suggesting that the 
+assumption of equal variances is reasonable. Assumption of normality also seems reasonable 
+as values follow a reasonably straight line (Figure 2).
+
+There is a significant relationship between the elevation of the mountain and allelic richness 
+(AR) (Linear regression: Df=1,12, R2=0.59, P=0.0022). Allelic richness increased with 
+increasing elevation (Figure 1). There is also a significant relationship between the elevation 
+and expected heterozygosity (Hs) (Linear regression: Df=1,12, R2=0.54, P=0.0043). Expected 
+heterozygosity increased with increasing elevation. Therefore, I reject the null hypothesis that 
+the linear relationship between allelic richness and expected heterozygosity is equal to 0. 
+
+
+```{r plot1, echo=FALSE}
+plot(Lizard_data$Elevation,Lizard_data$AR, xlab='Elevation',ylab='AR',main='Relationship between Elevation and AR',col='blue')
+
+```
+
+```{r}
+getwd()
+```
+Figure 1: Relationship between mountain elevation and allelic richness (AR)
+
+
+
+```{r plot2,echo=FALSE}
+qqnorm(Lizard_data$AR)
+qqline(Lizard_data$AR)
+
+```
+
+``` {r}
+getwd()
+```
+Figure 2: Normal qqplot for residuals
+
+```{r}
+getwd()
+```
+Table 1: Elevation of population sites and number of lizard tail samples collected per each 
+population (N), observed heterozygosity (Ho), expected heterozygosity (Hs), and allelic 
+richness (AR).
+Observed heterozygosity (Ho), expected heterozygosity (Hs), and allelic richness (AR) of 
+Eulamprus leuraensis populations was higher at higher elevations compared to lower 
+elevations sites (Table 1). 
+
+```{r plot3, echo=FALSE}
+summary(Lizard_data)
